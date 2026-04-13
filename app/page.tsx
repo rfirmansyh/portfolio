@@ -456,15 +456,10 @@ export default function Home() {
         } else {
           handleDesktopAnimation()
         }
-      }, 500);
+      }, 1000);
     };
 
-    if (document.readyState === 'complete') {
-      onReady();
-    } else {
-      window.addEventListener('load', onReady);
-      return () => window.removeEventListener('load', onReady);
-    }
+    onReady();
   }, []);
   useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
