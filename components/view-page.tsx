@@ -310,23 +310,6 @@ const ViewPage = ({
       });
     })
   }
-  // const { contextSafe } = useGSAP(
-  //   () => {
-  //     console.log('loaded', loaded)
-  //     if (isMobile) {
-  //       if (loaded && !isStreaming) {
-  //         handleMobileAnimation()
-  //       }
-  //     } else {
-  //       // handleDesktopSetter()
-  //       if (loaded && !isStreaming) {
-  //         console.log('loaded', loaded)
-  //         handleDesktopAnimation()
-  //       }
-  //     }
-  //   },
-  //   { scope: containerRef, dependencies: [loaded, isMobile, isStreaming] },
-  // );
 
   // Function to chunk text into fake tokens of 3-4 characters
   const chunkIntoTokens = useCallback((text: string): string[] => {
@@ -349,31 +332,14 @@ const ViewPage = ({
 
 
   useEffect(() => {
-    const onReady = () => {
-      // Defer slightly to ensure dynamically imported components have rendered
-      setTimeout(() => {
-        setLoaded(true);
-        if (isMobile) {
-          handleMobileAnimation()
-        } else {
-          handleDesktopAnimation()
-        }
-      }, 1000);
-    };
-
-    onReady();
-  }, []);
-  useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
 
-    if (loaded) {
-      // eslint-disable-next-line
-      setTokens(tokenizedSteps);
-      setContent("");
-      setCurrentTokenIndex(0);
-      setIsStreaming(true);
-    }
-  }, [loaded, chunkIntoTokens]);
+    // eslint-disable-next-line
+    setTokens(tokenizedSteps);
+    setContent("");
+    setCurrentTokenIndex(0);
+    setIsStreaming(true);
+  }, [chunkIntoTokens]);
   useEffect(() => {
     if (!isStreaming || currentTokenIndex >= tokens.length) {
       if (isStreaming) {
@@ -400,6 +366,7 @@ const ViewPage = ({
 
       <Activity mode={isMobile ? 'visible' : 'hidden'}>
         <MobileVersion
+          isStreaming={isStreaming}
           content={{
             isActive: isStreaming,
             experiences,
@@ -411,6 +378,7 @@ const ViewPage = ({
       </Activity>
       <Activity mode={!isMobile ? 'visible' : 'hidden'}>
         <DesktopVersion
+          isStreaming={isStreaming}
           content={{
             isActive: isStreaming,
             experiences,
