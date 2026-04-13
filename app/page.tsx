@@ -11,7 +11,7 @@ import ExpMengantarHD from "@/public/experiences/mengantar-hd.jpg";
 import ExpKappaHD from "@/public/experiences/kappa-hd.jpg";
 import ExpRootpixelHD from "@/public/experiences/rootpixel-hd.jpg";
 import Background from "@/components/app-elements/background";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -449,9 +449,8 @@ export default function Home() {
   }, [])
 
 
-  useEffect(() => {
-    window.addEventListener('DOMContentLoaded', handleLoad);
-    return () => window.removeEventListener('DOMContentLoaded', handleLoad);
+  useLayoutEffect(() => {
+    handleLoad()
   }, []);
   useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
