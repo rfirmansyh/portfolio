@@ -438,7 +438,7 @@ export default function Home() {
   const handleLoad = () => {
     setTimeout(() => {
       setLoaded(true)
-    }, 150);
+    }, 300);
   }
   const showExp = useCallback((open: boolean, editedIdx: number) => {
     setExperiences((prev) => {
