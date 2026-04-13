@@ -77,7 +77,7 @@ export function ThumbnailPreviewer({
             {companyName} — {role}
           </DialogTitle>
 
-          <div className="relative aspect-video rounded-t-[10px] overflow-hidden shadow-2xl ring-1 ring-black/10">
+          <div className="relative aspect-video rounded-t-[10px] overflow-hidden shadow-2xl ring-1 bg-[#b0b0b0] ring-black/10">
             <Image
               fill
               src={srcHD}

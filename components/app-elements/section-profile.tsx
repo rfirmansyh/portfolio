@@ -71,14 +71,14 @@ const SectionProfile: FC<ViewProps & { onLoad: VoidFunction }> = ({ view = 'desk
         <div className="flex items-center gap-[16px]">
           <div
             id="profile-img"
-            className="bg-[#F6F5F3] relative rounded-full overflow-hidden w-[72px] h-[72px]"
+            className="bg-[#b0b0b0] relative rounded-full overflow-hidden w-[72px] h-[72px]"
             style={{
               width: 160,
               height: 160,
               transform: 'translate(50%, 0)'
             }}
           >
-            <Image fill alt="Firman Profile Picture" priority fetchPriority="high" src={FirmanPP} onLoad={onLoad} />
+            <Image fill alt="Firman Profile Picture" src={FirmanPP} onLoad={onLoad} />
           </div>
           <div id="profile-content" className="flex flex-col items-start gap-[6px]">
             <div
