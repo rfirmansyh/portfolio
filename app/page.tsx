@@ -11,9 +11,8 @@ import ExpMengantarHD from "@/public/experiences/mengantar-hd.jpg";
 import ExpKappaHD from "@/public/experiences/kappa-hd.jpg";
 import ExpRootpixelHD from "@/public/experiences/rootpixel-hd.jpg";
 import Background from "@/components/app-elements/background";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 
 import { useMediaQuery } from "@/lib/hooks/use-media-query";
 import dynamic from "next/dynamic";
@@ -114,7 +113,7 @@ const dataExperiences = [
   },
 ];
 
-gsap.registerPlugin(useGSAP);
+// gsap.registerPlugin(useGSAP);
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -408,21 +407,23 @@ export default function Home() {
       });
     })
   }
-  const { contextSafe } = useGSAP(
-    () => {
-      if (isMobile) {
-        if (loaded && !isStreaming) {
-          handleMobileAnimation()
-        }
-      } else {
-        // handleDesktopSetter()
-        if (loaded && !isStreaming) {
-          handleDesktopAnimation()
-        }
-      }
-    },
-    { scope: containerRef, dependencies: [loaded, isMobile, isStreaming] },
-  );
+  // const { contextSafe } = useGSAP(
+  //   () => {
+  //     console.log('loaded', loaded)
+  //     if (isMobile) {
+  //       if (loaded && !isStreaming) {
+  //         handleMobileAnimation()
+  //       }
+  //     } else {
+  //       // handleDesktopSetter()
+  //       if (loaded && !isStreaming) {
+  //         console.log('loaded', loaded)
+  //         handleDesktopAnimation()
+  //       }
+  //     }
+  //   },
+  //   { scope: containerRef, dependencies: [loaded, isMobile, isStreaming] },
+  // );
 
   // Function to chunk text into fake tokens of 3-4 characters
   const chunkIntoTokens = useCallback((text: string): string[] => {
@@ -435,11 +436,6 @@ export default function Home() {
     }
     return tokens;
   }, []);
-  const handleLoad = () => {
-    setTimeout(() => {
-      setLoaded(true)
-    }, 500);
-  }
   const showExp = useCallback((open: boolean, editedIdx: number) => {
     setExperiences((prev) => {
       return prev.map((exp, idx) =>
@@ -449,8 +445,26 @@ export default function Home() {
   }, [])
 
 
-  useLayoutEffect(() => {
-    handleLoad()
+  useEffect(() => {
+    const onReady = () => {
+      // Defer slightly to ensure dynamically imported components have rendered
+      setTimeout(() => {
+        setLoaded(true);
+        console.log({ isMobile })
+        if (isMobile) {
+          handleMobileAnimation()
+        } else {
+          handleDesktopAnimation()
+        }
+      }, 500);
+    };
+
+    if (document.readyState === 'complete') {
+      onReady();
+    } else {
+      window.addEventListener('load', onReady);
+      return () => window.removeEventListener('load', onReady);
+    }
   }, []);
   useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
