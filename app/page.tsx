@@ -1,14 +1,10 @@
-'use client';
-
 import ExpMengantar from "@/public/experiences/mengantar.png";
 import ExpKappa from "@/public/experiences/kappa.png";
 import ExpRootpixel from "@/public/experiences/rootpixel.png";
 import ExpMengantarHD from "@/public/experiences/mengantar-hd.jpg";
 import ExpKappaHD from "@/public/experiences/kappa-hd.jpg";
 import ExpRootpixelHD from "@/public/experiences/rootpixel-hd.jpg";
-import dynamic from "next/dynamic";
-
-const ViewPage = dynamic(() => import('@/components/view-page'), { ssr: false })
+import ViewPage from "@/components/view-page";
 
 const reasoningSteps = [
   "As Software Engineer he is either a magician or a someone who can turn coffee and late nights into interactive and high-performance apps that make your product running smoothly and your users engaged",

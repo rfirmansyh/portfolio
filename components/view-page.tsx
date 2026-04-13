@@ -1,7 +1,7 @@
 'use client';
 
 import Background from "@/components/app-elements/background";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Activity, useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 import { useMediaQuery } from "@/lib/hooks/use-media-query";
@@ -353,7 +353,6 @@ const ViewPage = ({
       // Defer slightly to ensure dynamically imported components have rendered
       setTimeout(() => {
         setLoaded(true);
-        console.log({ isMobile })
         if (isMobile) {
           handleMobileAnimation()
         } else {
@@ -399,29 +398,28 @@ const ViewPage = ({
     >
       <Background />
 
-      {isMobile
-        ? (
-          <MobileVersion
-            content={{
-              isActive: isStreaming,
-              experiences,
-              content,
-              showExp,
-              containerRef,
-            }}
-          />
-        )
-        : (
-          <DesktopVersion
-            content={{
-              isActive: isStreaming,
-              experiences,
-              content,
-              showExp,
-              containerRef,
-            }}
-          />
-        )}
+      <Activity mode={isMobile ? 'visible' : 'hidden'}>
+        <MobileVersion
+          content={{
+            isActive: isStreaming,
+            experiences,
+            content,
+            showExp,
+            containerRef,
+          }}
+        />
+      </Activity>
+      <Activity mode={!isMobile ? 'visible' : 'hidden'}>
+        <DesktopVersion
+          content={{
+            isActive: isStreaming,
+            experiences,
+            content,
+            showExp,
+            containerRef,
+          }}
+        />
+      </Activity>
     </div>
   );
 }
