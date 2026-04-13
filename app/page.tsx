@@ -438,7 +438,7 @@ export default function Home() {
   const handleLoad = () => {
     setTimeout(() => {
       setLoaded(true)
-    }, 300);
+    }, 500);
   }
   const showExp = useCallback((open: boolean, editedIdx: number) => {
     setExperiences((prev) => {
@@ -450,13 +450,8 @@ export default function Home() {
 
 
   useEffect(() => {
-    if (document.readyState === 'complete') {
-      // Already fully loaded (e.g. hot reload, client nav)
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
-    }
+    window.addEventListener('load', handleLoad);
+    return () => window.removeEventListener('load', handleLoad);
   }, []);
   useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
