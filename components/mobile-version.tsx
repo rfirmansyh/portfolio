@@ -9,11 +9,10 @@ import type { ViewVersionProps } from './desktop-version'
 
 const MobileVersion: FC<ViewVersionProps> = ({
   content,
-  onLoad
 }) => {
   return (
     <main className="relative w-[calc(100dvw-16px)] lg:max-w-[540px] min-h-[calc(100dvh-16px)] mx-auto z-3">
-      <SectionProfile view="mobile" onLoad={onLoad} />
+      <SectionProfile view="mobile" />
       {/* <SectionTechStack />
       <SectionLatestUpdate /> */}
 

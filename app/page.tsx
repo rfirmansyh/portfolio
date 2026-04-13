@@ -448,15 +448,27 @@ export default function Home() {
     })
   }, [])
 
+
+  useEffect(() => {
+    if (document.readyState === 'complete') {
+      // Already fully loaded (e.g. hot reload, client nav)
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
+    }
+  }, []);
   useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
 
-    // eslint-disable-next-line
-    setTokens(tokenizedSteps);
-    setContent("");
-    setCurrentTokenIndex(0);
-    setIsStreaming(true);
-  }, [chunkIntoTokens]);
+    if (loaded) {
+      // eslint-disable-next-line
+      setTokens(tokenizedSteps);
+      setContent("");
+      setCurrentTokenIndex(0);
+      setIsStreaming(true);
+    }
+  }, [loaded, chunkIntoTokens]);
   useEffect(() => {
     if (!isStreaming || currentTokenIndex >= tokens.length) {
       if (isStreaming) {
@@ -484,7 +496,6 @@ export default function Home() {
       {isMobile
         ? (
           <MobileVersion
-            onLoad={handleLoad}
             content={{
               isActive: isStreaming,
               experiences,
@@ -496,7 +507,6 @@ export default function Home() {
         )
         : (
           <DesktopVersion
-            onLoad={handleLoad}
             content={{
               isActive: isStreaming,
               experiences,

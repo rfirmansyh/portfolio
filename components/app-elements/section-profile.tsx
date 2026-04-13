@@ -41,7 +41,7 @@ const getYo = () => {
   return `${years}yo`;
 };
 
-const SectionProfile: FC<ViewProps & { onLoad: VoidFunction }> = ({ view = 'desktop', onLoad }) => {
+const SectionProfile: FC<ViewProps> = ({ view = 'desktop' }) => {
   const rootClass = cn('w-full relative flex flex-col items-start gap-[16px] bg-white shadow-md rounded-[8px] border border-[#EEEDED] p-[20px]', {
     'max-w-[372px]': view === 'desktop',
   })
@@ -78,7 +78,7 @@ const SectionProfile: FC<ViewProps & { onLoad: VoidFunction }> = ({ view = 'desk
               transform: 'translate(50%, 0)'
             }}
           >
-            <Image fill alt="Firman Profile Picture" src={FirmanPP} onLoad={onLoad} />
+            <Image fill alt="Firman Profile Picture" src={FirmanPP} />
           </div>
           <div id="profile-content" className="flex flex-col items-start gap-[6px]">
             <div
@@ -94,7 +94,7 @@ const SectionProfile: FC<ViewProps & { onLoad: VoidFunction }> = ({ view = 'desk
               </h1>
               <h3 className="grid items-center auto-cols-max grid-flow-col gap-2 text-[14px] text-[#7F7F7F] font-sans font-normal">
                 <span>{getYo()}</span>
-                <hr className="w-[1px] bg-[#E5E5E5] h-[80%] border-none" />
+                <hr className="w-px bg-[#E5E5E5] h-[80%] border-none" />
                 <span>Software Engineer</span>
               </h3>
             </div>

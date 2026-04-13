@@ -95,7 +95,7 @@ const SectionContent: FC<SectionContentProps> = ({
           Generating experiences
         </ChainOfThoughtHeader>
         <ChainOfThoughtContent className="relative">
-          <div className="absolute top-0 bottom-0 left-[6.5px] w-[1px] h-full rounded-sm bg-[#145DD925]"></div>
+          <div className="absolute top-0 bottom-0 left-[6.5px] w-px h-full rounded-sm bg-[#145DD925]"></div>
           <div className="flex flex-col gap-[16px]">
             {experiences.map((exp, idx) => (
               <div key={idx} id={`content-generate-experience-${idx}`} className="hidden">
@@ -122,9 +122,9 @@ const SectionContent: FC<SectionContentProps> = ({
 
                         <h3 className="hidden @min-[390px]:grid items-center auto-cols-max grid-flow-col gap-2 text-[10px] text-[#7F7F7F] font-sans font-normal">
                           <span>{exp.location}</span>
-                          <hr className="w-[1px] bg-[#E5E5E5] h-[80%] border-none" />
+                          <hr className="w-px bg-[#E5E5E5] h-[80%] border-none" />
                           <span>{exp.type}</span>
-                          <hr className="w-[1px] bg-[#E5E5E5] h-[80%] border-none" />
+                          <hr className="w-px bg-[#E5E5E5] h-[80%] border-none" />
                           <span>
                             {getformatExperienceRange(exp)}{" "}
                             <strong>
@@ -137,9 +137,9 @@ const SectionContent: FC<SectionContentProps> = ({
 
                     <h3 className="grid @min-[390px]:hidden mt-2 items-center auto-cols-max grid-flow-col gap-2 text-[8px] text-[#7F7F7F] font-sans font-normal">
                       <span>{exp.location}</span>
-                      <hr className="w-[1px] bg-[#E5E5E5] h-[80%] border-none" />
+                      <hr className="w-px bg-[#E5E5E5] h-[80%] border-none" />
                       <span>{exp.type}</span>
-                      <hr className="w-[1px] bg-[#E5E5E5] h-[80%] border-none" />
+                      <hr className="w-px bg-[#E5E5E5] h-[80%] border-none" />
                       <span>
                         {formatExperienceRange(exp.startAt, exp.endAt)}{" "}
                         <strong>

@@ -11,16 +11,14 @@ export type ViewProps = {
 }
 export type ViewVersionProps = {
   content: SectionContentProps;
-  onLoad: VoidFunction;
 }
 
 const DesktopVersion: FC<ViewVersionProps> = ({
   content,
-  onLoad
 }) => {
   return (
     <main className="relative w-full lg:max-w-[1150px] min-h-[660px] mx-auto z-3">
-      <SectionProfile view="desktop" onLoad={onLoad} />
+      <SectionProfile view="desktop" />
       <SectionTechStack />
       <SectionLatestUpdate />
 
