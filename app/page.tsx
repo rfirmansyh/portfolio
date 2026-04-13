@@ -450,8 +450,8 @@ export default function Home() {
 
 
   useEffect(() => {
-    window.addEventListener('load', handleLoad);
-    return () => window.removeEventListener('load', handleLoad);
+    window.addEventListener('DOMContentLoaded', handleLoad);
+    return () => window.removeEventListener('DOMContentLoaded', handleLoad);
   }, []);
   useEffect(() => {
     const tokenizedSteps = chunkIntoTokens(reasoningSteps);
