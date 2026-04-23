@@ -159,7 +159,7 @@ const SectionProfile: FC<ViewProps> = ({ view = 'desktop' }) => {
 
         <a
           id="profile-content-button"
-          href="/Rahmad_Firmansyah_Senior_Front-End_Developer_Profile.pdf"
+          href="/Rahmad_Firmansyah_Senior_Front-End_Developer_Profile_2.pdf"
           download="Rahmad_Firmansyah_Senior_Front-End_Developer_Profile.pdf"
           className="flex cursor-pointer items-center gap-[6px] text-[12px] py-[4px] px-[6px] rounded-[4px] border border-[#145DD9] text-[#145DD9]"
           style={{
